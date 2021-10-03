@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src = "png.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  </head>
+    <style>
+       @font-face { font-family: Arimo; src: url('Arimo-VariableFont_wght.ttf'); } 
+       @font-face {font-family: Arimo-Italic;src: url('Arimo-Italic-VariableFont_wght.ttf');}
+        html, body {
+  margin: 0;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top:10px;
+  height: 100%;
+  background: rgb(0,0,0);
+  color: white;
+  font-family: Arimo;
+  
+}
+#c {
+  width: 250px;
+  height: 170px;
+  display: block;
+  margin:auto;
+}
+#generate{
+  position: relative;
+  left:15vw;
+  border: none;
+  padding: 15px 32px;
+  padding-bottom: 20px;
+  color: white;
+  background: #00A3FF;
+  display: inline-block;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 18px;
+  text-align: center;
+  transition-duration: 0.4s;
+  text-transform: uppercase;
+  top:5vh;
+}
+#generate:hover{
+  background: rgba(255, 255, 255, 0.2);
+}
+h2{
+  text-align: center;
+}
+.masterContainer{
+  display: grid;
+  grid-template-columns: 0.3fr 0.3fr 0.2fr 0.2fr;
+}
+.headingContainer{
+  grid-column: 1/span 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.infoContainer{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+.item2{
+  color: #9EA3AF;
+}
+.asteroidContainer{
+  grid-column: 2/span 2;
+  
+}
+.subContainer{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+.slider{
+  height: 2px;
+  padding-left: 1px;
+  padding-right: 2px;
+  width: 15vw;
+}
+.slider::-webkit-slider-thumb{
+  background:#00A3FF;
+}
+.label,.a{color: #9EA3AF;}
+.desc{
+  font-style: italic;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 16px;
+}
+#l1{
+  color:#414141;
+}
+.descContainer{
+  position: relative;
+  left: 14vw;
+  top:3vh;
+}
+#shapeType{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  position: relative;
+  left: 19.5vw;
+}
+.sub1{
+  grid-column: 1/span 2;
+  display: flex;
+  justify-content: space-between;
+}
+.sub2{
+  grid-column: 1/span 2;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+#item1{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 29px;
+  line-height: 33px;
+}
+.sub3, .sub4{
+  grid-column: 1/span 2;
+  display: grid;
+  grid-template-columns: auto auto;
+  padding-right: 3vw;
+  position: relative;
+}
+.sub4{
+  padding-top:10px;
+}
+.item2{
+  grid-column: 1/span 2;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  color: white;
+}
+.item3 , .item4{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 18px;
+  color: #9EA3AF;
+}
+.item4{color: white;}
+.sub3sub1{
+  grid-column: 1/span2;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 7px;
+  padding-bottom: 5px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+#jupiterPlanet,.sub3sub1 span{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #9EA3AF;
+}
+.subSub1 span{
+  color: rgba(255, 255, 255, 0.2);
+}
+#lc{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  margin-bottom: 10px;
+}
+#btn{
+  margin-top: 5vh;
+  border:none;
+  display: inline-block;
+  background: transparent;
+  color: #9EA3AF;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  transition-duration: 0.4s;
+}
+#btn:hover{
+  color: white;
+}
+.rr{
+  background: transparent;
+  color: white;
+  border:none;
+  width:40px;
+  text-align: center;
+  color: #9EA3AF;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  transition-duration: 0.4s;
+  position: relative;
+}
+.rr:hover{
+  color: white;
+}
+img{
+  display: inline-block;
+  width:20px;
+  height: 20px;
+  position: relative;
+  top:0.7vh;
+  margin-right: 0.5vw;
+}
+#glg{
+  position: relative;
+  right: 0.5vw;
+}
+.plus,.minus{
+  height: 10px;
+  width: 10px;
+}
+.minus{
+  position: relative;
+  left: 0.8vw;
+  top: 0.5vh;
+}
+.a{
+  width: 10px;
+  height: 10px;
+}
+.b{
+  position: relative;
+  top: 0.9vh;
+  right: 0.2vw;
+}
+#nasaLogo{
+  height: 8vh;
+  width: 5vw;
+  grid-row: 1/span2;
+  position: relative;
+  top: 1.5vh;
+}
+.subHeading{
+  width: 16vw;
+  display: grid;
+  grid-template-columns: auto auto;
+}
+#heading2,#heading3{
+  position: relative;
+  top: -2vh;
+  left: -0.7vw;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  text-transform: capitalize;
+}
+#heading3{
+  top:0.7vh;
+}
+#heading1,#heading4{
+  position: relative;
+  top: 3vh;
+  left: -0.7vw;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: capitalize;
+  color: #9EA3AF;
+}
+#heading4{
+  top:0.7vh;
+  left:1.5vw;
+}
+.additionalContainer{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-row-gap: 4vh;
+}
+.additionalContainer span{
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  color: #9EA3AF;
+}
+.rotationContainer{
+  width: 5vw;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+.rot{
+  border: none;
+  background: transparent;
+  color: #00A3FF;
+  transition-duration: 0.4s;
+  position: relative;
+  left: 20vw;
+}
+.rot:hover{
+  color: rgba(255, 255, 255, 0.2);
+}
+#fileSelect{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 18px;
+  color: white;
+  border: 0.5px solid #6C7487;
+  background: transparent;
+  padding:10px;
+  padding-bottom: 16px;
+  text-transform: uppercase;
+  position: relative;
+  top:3vh;
+  left: 2vw;
+  transition-duration: 0.4s;
+}
+#fileSelect:hover{
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.info{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 23px;
+}
+ </style>
+    <body>
+      <div class="masterContainer">
+      <div class="headingContainer">
+        <div class="subHeading">
+          <img src="nasaLogo.png" id="nasaLogo">
+     <span style id="heading1">LIGHT-CURVE GENERATOR</span><br>
+     <span style id="heading2">ASTEROID APPS</span>
+        </div>
+        <div class = "subHeading2">
+     <span id = "heading3">14:30 PM EST</span><br>
+     <span id = "heading4">2 NOV 2021</span>
+     </div>
+     </div>
+     <div class="infoContainer">
+       <div class = "sub1">
+         <span id = "jupiterPlanet">JUPITER PLANETS</span>
+         <div class="subSub1">
+           <span id="counter">1</span><span>/</span><span>8</span><span> </span><span>ASTEROIDS</span>
+         </div>
+       </div>
+       <div class="sub2">
+       <div id="item1">1620 GEOGRAPHOS</div>
+       <div>
+         <img src ="Icons/Left arrow3.svg" id="back"><span> </span><img src="Icons/Right arrow3.svg" id="forth">
+       </div>
+       </div><br>
+      
+       <div class="sub3">
+        <div class="item2">GENERAL INFORMATION</div><br><br>
+       <div class="sub3sub1">
+       <div class="item3">Observation Arc</div>
+       <div class="item4">65.37 yr</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Aphelion</div>
+       <div class="item4">1.6629 AU</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Perihelion</div>
+       <div class="item4">0.8276 AU</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Semi-Major Axis</div>
+       <div class="item4">1.2453 AU</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Eccentricity</div>
+       <div class="item4">0.33554</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Orbital Period</div>
+       <div class="item4">1.39 yr</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Category</div>
+       <div class="item4">NEO,Apollo,PHA</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Rotational Period</div>
+       <div class="item4">5.2220+-0.0003h</div>
+       </div>
+       </div><br>
+       <div class="sub4">
+       <div class="item2">TECHNICALS</div>
+       <div class="sub3sub1">
+       <div class="item3">Mass</div>
+       <div class="item4">16,050 Kg</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Class</div>
+       <div class="item4">Carbonaceus</div>
+       </div>
+       <div class="sub3sub1">
+       <div class="item3">Class</div>
+       <div class="item4">Carbonaceus</div>
+       </div>
+       </div>
+       <input type="file" id="input" multiple accept=".glb" style="display:none">
+       <button id="fileSelect"><img src="Icons/plus.svg">Upload Your Model</button>
+     </div>
+     <div class="asteroidContainer">
+       <h4 id="shapeType">Rotation Axis</h4>
+       <div class = "rotationContainer">
+         <button class="rot">X</button>
+         <button class="rot">Y</button>
+         <button class="rot">Z</button>
+       </div>
+        <canvas id="c"></canvas><br>
+        <div class="descContainer">
+          <img src = "Icons/search2.svg">
+        <span class="desc" id="l1">You can zoom the model with mouse</span>
+        </div><br>
+        <div class="descContainer">
+        <img src="Icons/rotate.svg" >        
+        <span class="desc">Rotate the asteroid to generate its light curve</span>
+        </div><br><br>
+        <button id="generate"><img src="Icons/generate light curve.svg" id="glg">Generate Light Curve</button>
+        <div class="chart-container" style="height: auto;">
+          <canvas id="lg"></canvas>
+      </div>
+        </div>
+        <div class="controlContainer">
+          <div id="lc">LIGHTING CONTROLS</div>
+        <div class="slidecontainer">
+          <div class="subContainer">
+            <span class="label">Intensity</span>
+            <div class="subSubContainer">
+            <img class="a" src="Icons/Left arrow2.svg">
+            <span class="b">3</span>
+            <img class="a" src="Icons/Right arrow2.svg">
+            </div>
+          </div>
+          <img src="Icons/plus.svg" class="plus"><input type="range" min="0" max="5" value="3" steps = 0.01 class="slider" id="range"><img src="Icons/minus.svg" class="minus"><br><br><br>
+          <div class="subContainer">
+            <span class="label">Left or Right (x)</span>
+            <div class="subSubContainer">
+              <img class="a" src="Icons/Left arrow2.svg">
+              <span class="b">3</span>
+              <img class="a" src="Icons/Right arrow2.svg">
+            </div>
+          </div>
+          <img src="Icons/plus.svg" class="plus"><input type="range" min="-10" max="10" value="3" steps = 0.01 class="slider" id="range2"><img src="Icons/minus.svg" class="minus"><br><br><br>
+          <div class="subContainer">
+            <span class="label">Up or Down (Y)</span>
+            <div class="subSubContainer">
+              <img class="a" src="Icons/Left arrow2.svg">
+              <span class="b">3</span>
+              <img class="a" src="Icons/Right arrow2.svg">
+            </div>
+          </div>
+          <img src="Icons/plus.svg" class="plus"><input type="range" min="-10" max="10" value="3" steps = 0.01 class="slider" id="range3"><img src="Icons/minus.svg" class="minus"><br><br><br>
+          <div class="subContainer">
+            <span class="label">Forward or Back (Z)</span>
+            <div class="subSubContainer">
+              <img class="a" src="Icons/Left arrow2.svg">
+              <span class="b">3</span>
+              <img class="a" src="Icons/Right arrow2.svg">
+            </div>
+          </div>
+          <img src="Icons/plus.svg" class="plus"><input type="range" min="-10" max="10" value="3" steps = 0.01 class="slider" id="range4"><img src="Icons/minus.svg" class="minus">
+        </div>
+        <button id="btn"><img src="Icons/triangle.svg" style="width:10px;height: 10px;position: relative;top:-0.1vh;">Play</button>
+        <span style="position: relative;left: 0.5vw;">x</span><input type="number" max="100" min="1" step="0.1" value='1.0' class="rr" style="position: relative;left: 0.5vw;">
+        <img src="Icons/rotate2.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:0.5vw;"><input type="reset" class="rr"><br><br>
+        <div class="additionalContainer">
+          <div>
+            <span>ROTATION PERIOD</span><br>
+            <span style="color: white;" class="info">-</span>
+          </div>
+          <div>
+            <span>JDO (LTC)</span><br>
+            <span style="color: white;" class="info">-</span>
+          </div>
+          <div>
+            <span>T0-TDB</span><br>
+            <span style="color: white;" class="info">-</span>
+          </div>
+          <div>
+            <span>AMP</span><br>
+            <span style="color:white;" class="info">-</span>
+          </div>
+        </div>
+        </div>
+        
+      </div>
+    </body>
+
+ <!--#############################################################################################################################-->   
+
+<script>
+const canvas = document.querySelector('#c');
+let chart;
+let date = new Date();
+
+let imageValues = [];
+let timeValues = [];
+let lightCurveValues = [];
+let abc = (pngBytes) =>{
+  const reader = new PNGReader(pngBytes);
+  reader.parse(function(err, png) {
+    imageValues.push(png);
+  });
+}
+let imageFrames = async () =>{
+  const image = canvas.toDataURL("image/png").slice(22);
+  const pngBytes = atob(image);
+  await abc(pngBytes);
+}
+let getBrightness = () =>{
+    for(let i = 0;i<imageValues.length;i++){  
+
+      let brightness=0;
+      for(let j = 0;j<imageValues[i].pixels.length;j+=4){
+        brightness+= Math.floor((0.2126*imageValues[i].pixels[j])+(0.7152*imageValues[i].pixels[j+1])+(0.0722*imageValues[i].pixels[j+2]));
+      }
+      brightness = ((brightness/10000000)*(20));
+      lightCurveValues.push({x:timeValues[i],y:brightness});
+    }
+  }
+ 
+ let plotLG = async() =>{
+   await getBrightness();
+
+   chart = new Chart("lg", {
+  type: "scatter",
+  axisX:{
+       title: "ROTATIONAL PHASE",
+       labelFontColor:"rgb(255, 255, 255)"
+      },
+  data: {
+    datasets: [{
+      pointRadius: 4,
+      pointBackgroundColor: "#00A3FF",
+      data: lightCurveValues
+    }]
+  },
+  options :{
+    responsive: true,
+  scales: {
+    yAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'BRIGHTNESS'
+      }
+    }],
+    xAxes: [{
+      scaleLabel: {
+        display: true,
+        labelString: 'ROTATIONAL PHASE'
+      }
+    }]
+  }     
+}
+  
+});
+window.lg = chart;
+ }
+
+document.querySelector("#generate").addEventListener("click",function(){
+  const unwanted = document.getElementsByClassName("descContainer");
+  unwanted[0].style.display = "none"; unwanted[1].style.display = "none";
+
+  document.querySelector("#generate").style.top = "-3vh";
+  
+  const info = document.getElementsByClassName("info");
+  plotLG();
+
+ //document.querySelector("label1").style.display="inline-block";
+
+  info[0].innerHTML = document.getElementsByClassName("rr")[0].value+" H";
+  info[1].innerHTML = "10.2392";
+  info[2].innerHTML = date.getDate()+"/"+date.getMonth()+"/"+date.getUTCFullYear();
+  info[3].innerHTML = "0:21";
+
+});
+</script>
+
+<!--################################################################################################################################-->
+
+<script type = "module">
+ import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
+import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
+import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
+import {GUI} from 'https://threejsfundamentals.org/threejs/../3rdparty/dat.gui.module.js';
+
+function main() {
+  const renderer = new THREE.WebGLRenderer({canvas,alpha: true,preserveDrawingBuffer: true});
+
+  let tau = 1,fps=10,step=0,FA = Math.PI*2,angelStep = 0,t=0,aor='x';
+
+  document.getElementsByClassName("rr")[0].oninput = function(){
+    tau=this.value;
+      step = 1/(tau*fps);
+      angelStep = FA*step;
+  }
+  document.getElementsByClassName("rot")[0].addEventListener("click",function(){aor='x'});
+  document.getElementsByClassName("rot")[1].addEventListener("click",function(){aor='y'});
+  document.getElementsByClassName("rot")[2].addEventListener("click",function(){aor='z'});
+
+  let root,forthCounter = 0, backCounter=0;
+  const availableAsteroids = ['Bennu','Vesta','Golevka','Geographos','hw1','Kleopatra','Mithra','Itokawa'];
+  const months = ["Jan", "Feb", "March", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+
+  const fov = 45;
+  const aspect = 2;  // the canvas default
+  const near = 0.1;
+  const far = 100;
+  const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+  camera.position.set(0, 10, 20);
+
+  const controls = new OrbitControls(camera, canvas);
+  controls.target.set(0, 5, 0);
+  controls.update();
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color('black');
+
+
+
+  {
+    const color = 0xFFFFFF;
+    const intensity = 5;
+    const light = new THREE.DirectionalLight(color, intensity);
+    light.position.set(5, 1, 2);
+    scene.add(light);
+    scene.add(light.target);
+
+    let slider = document.getElementById("range");
+    let slider2 = document.getElementById("range2");
+    let slider3 = document.getElementById("range3");
+    let slider4 = document.getElementById("range4");
+    slider.oninput = function() {
+    light.intensity = this.value;
+    document.getElementsByClassName('b')[0].innerHTML=this.value;
+  }
+    slider2.oninput = function(){
+      light.target.position.x = this.value;
+      document.getElementsByClassName('b')[1].innerHTML=this.value;
+    }
+    slider3.oninput = function(){
+      light.target.position.y = this.value;
+      document.getElementsByClassName('b')[2].innerHTML=this.value;
+    }
+    slider4.oninput = function(){
+      light.target.position.z = this.value;
+      document.getElementsByClassName('b')[3].innerHTML=this.value;
+    }
+  }
+
+  function frameArea(sizeToFitOnScreen, boxSize, boxCenter, camera) {
+    const halfSizeToFitOnScreen = sizeToFitOnScreen * 0.5;
+    const halfFovY = THREE.MathUtils.degToRad(camera.fov * .5);
+    const distance = halfSizeToFitOnScreen / Math.tan(halfFovY);
+    // compute a unit vector that points in the direction the camera is now
+    // in the xz plane from the center of the box
+    const direction = (new THREE.Vector3())
+        .subVectors(camera.position, boxCenter)
+        .multiply(new THREE.Vector3(1, 0, 1))
+        .normalize();
+
+    // move the camera to a position distance units way from the center
+    // in whatever direction the camera was from the center already
+    camera.position.copy(direction.multiplyScalar(distance).add(boxCenter));
+
+    // pick some near and far values for the frustum that
+    // will contain the box.
+    camera.near = boxSize / 100;
+    camera.far = boxSize * 100;
+
+    camera.updateProjectionMatrix();
+
+    // point the camera to look at the center of the box
+    camera.lookAt(boxCenter.x, boxCenter.y, boxCenter.z);
+  }
+  
+  {
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.load('asteroids/Bennu.glb', (gltf) => {
+      root = gltf.scene;
+      //console.log(gltf.scenes[0]);
+      scene.add(root);
+      //console.log(dumpObject(root).join('\n'));
+      // compute the box that contains all the stuff
+      // from root and below
+      const box = new THREE.Box3().setFromObject(root);
+
+      const boxSize = box.getSize(new THREE.Vector3()).length();
+      const boxCenter = box.getCenter(new THREE.Vector3());
+
+      // set the camera to frame the box
+      frameArea(boxSize * 0.5, boxSize, boxCenter, camera);
+
+      // update the Trackball controls to handle the new size
+      controls.maxDistance = boxSize * 10;
+      controls.target.copy(boxCenter);
+      controls.update();
+    });
+  }
+  const fileSelect = document.getElementById("fileSelect"),
+  inputElement = document.getElementById("input");
+
+  fileSelect.addEventListener("click", function (e) {
+  if (inputElement) {
+    inputElement.click();
+  }
+  }, false);
+
+  inputElement.addEventListener("change", handleFiles, false);
+  function handleFiles() {
+  const fileList = this.files;
+  const selectedFile = fileList[0];
+  const objectURL = window.URL.createObjectURL(selectedFile);
+  scene.remove(scene.children[2]);
+  {
+    
+      const gltfLoader = new GLTFLoader();
+      gltfLoader.load(objectURL, (gltf) => {
+      root = gltf.scene;
+      scene.add(root);
+      const box = new THREE.Box3().setFromObject(root);
+
+      const boxSize = box.getSize(new THREE.Vector3()).length();
+      const boxCenter = box.getCenter(new THREE.Vector3());
+
+      frameArea(boxSize * 0.5, boxSize, boxCenter, camera);
+
+      controls.maxDistance = boxSize * 10;
+      controls.target.copy(boxCenter);
+      controls.update();
+    });
+  
+  }
+  }
+
+  function makeGeometry(geometry,x){
+    const material = new THREE.MeshPhongMaterial({color:0x44aa88});
+    const obj = new THREE.Mesh(geometry,material);
+    scene.add(obj);
+    obj.position.x = x;
+    console.log(scene.children);
+  }
+
+  function dumpObject(obj, lines = [], isLast = true, prefix = '') {
+  const localPrefix = isLast ? '└─' : '├─';
+  lines.push(`${prefix}${prefix ? localPrefix : ''}${obj.name || '*no-name*'} [${obj.type}]`);
+  const newPrefix = prefix + (isLast ? '  ' : '│ ');
+  const lastNdx = obj.children.length - 1;
+  obj.children.forEach((child, ndx) => {
+    const isLast = ndx === lastNdx;
+    dumpObject(child, lines, isLast, newPrefix);
+  });
+  return lines;
+}
+
+  function resizeRendererToDisplaySize(renderer) {
+    const canvas = renderer.domElement;
+    const width = canvas.clientWidth;
+    const height = canvas.clientHeight;
+    const needResize = canvas.width !== width || canvas.height !== height;
+    if (needResize) {
+      renderer.setSize(width, height, false);
+    }
+    return needResize;
+  }
+  let loaded = false;
+  
+  function render() {
+   // time*=0.001;
+    if (resizeRendererToDisplaySize(renderer)) {
+      const canvas = renderer.domElement;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+    }
+    if(root){
+    loaded = true;
+    }
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(render);
+  }
+  requestAnimationFrame(render);
+
+  function revolution(){
+  if(loaded){
+  if(t>=1){t=0;return};
+  t+=step;
+  if(aor=='x')
+  root.rotation.x+=angelStep;
+  else if(aor=='y')
+  root.rotation.y+=angelStep;
+  else
+  root.rotation.z+=angelStep;
+  imageFrames();
+  timeValues.push(t);
+  }
+requestAnimationFrame(revolution);
+}
+function renderAsteroid(name){
+  scene.remove(scene.children[2]);
+    {
+      const gltfLoader = new GLTFLoader();
+      gltfLoader.load('asteroids/'+name+'.glb', (gltf) => {
+      root = gltf.scene;
+      scene.add(root);
+
+      const box = new THREE.Box3().setFromObject(root);
+
+      const boxSize = box.getSize(new THREE.Vector3()).length();
+      const boxCenter = box.getCenter(new THREE.Vector3());
+
+      frameArea(boxSize * 0.5, boxSize, boxCenter, camera);
+
+      controls.maxDistance = boxSize * 10;
+      controls.target.copy(boxCenter);
+      controls.update();
+    });
+  }
+}
+function revolutionHelper(){
+  requestAnimationFrame(revolution);
+}
+function setValues(name,obvArc,aphelion,perihelion,sma,e,op,RP,cat,mass,c){
+document.querySelector("#item1").innerHTML = name;
+document.getElementsByClassName("item4")[0].innerHTML = obvArc;
+document.getElementsByClassName("item4")[1].innerHTML = aphelion;
+document.getElementsByClassName("item4")[2].innerHTML = perihelion;
+document.getElementsByClassName("item4")[3].innerHTML = sma;
+document.getElementsByClassName("item4")[4].innerHTML = e;
+document.getElementsByClassName("item4")[5].innerHTML = op;
+document.getElementsByClassName("item4")[6].innerHTML = RP;
+document.getElementsByClassName("item4")[7].innerHTML = cat;
+document.getElementsByClassName("item4")[8].innerHTML = mass;
+document.getElementsByClassName("item4")[9].innerHTML = c;
+document.getElementsByClassName("item4")[10].innerHTML = c;
+}
+document.querySelector("#btn").addEventListener("click",revolutionHelper);
+document.querySelector("#forth").addEventListener("click",async function(){
+  let index = 0;
+if(forthCounter>=0){
+  index = forthCounter%(availableAsteroids.length);
+  forthCounter = index;
+}
+else{
+  index = forthCounter+availableAsteroids.length;
+  forthCounter = index;
+}
+let asteroid = availableAsteroids[index];
+if(asteroid=="Bennu"){setValues("101955 Bennu","21.06 yr","1.3559 AU","0.89689 AU","1.1264 AU","0.20375","1.1955 yr","4.296057±0.000002 h","NEO,Apollo,PHA","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Geographos"){setValues("1620 Geographos","65.37 yr","1.6629 AU","0.8276 AU","1.2453 AU","0.3354","1.39 yr","5.2220±0.0003 h","NEO,Apollo,PHA","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Golevka"){setValues("6489 Golevka","24.55 yr","4.021663 AU","0.992813 AU","2.507238 AU","0.604021","3.97 yr","6.026 h","Alinda, Apollo, PHA, Mars Crosser","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Vesta"){setValues("4 Vesta","214 yr","2.57138 AU","2.15221 AU","2.36179 AU","0.08874","3.63 yr","5.342 h","Main-belt","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Mithra"){setValues("4486 Mithra","29.04 yr","3.6582 AU","0.7417 AU","2.2000 AU","0.6629","3.26 yr","67.5±6 h","NEO, Apollo, PHA","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Kleopatra"){setValues("216 Kleopatra","137.60 yr","3.4951 AU","2.0931 AU","2.7941 AU","0.2509","4.67 yr","5.385280±0.000001 h","Main-belt","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Itokawa"){setValues("25143 Itokawa","20.38 y","1.6951 AU","0.9532 AU","1.3241 AU","0.2801","1.52 yr","12.132 h","NEO, Apollo, PHA","10,050 Kg","Carbonaceous");}
+else{setValues("1996 HW1","NIL","2.964 AU","1.1260045 AU","2.0450908 AU","0.45","2.92 yr","NIL","NIL","10,050 Kg","NIL");}
+
+document.getElementById("counter").innerHTML=index+1;
+await renderAsteroid(asteroid);
+forthCounter++; backCounter=forthCounter-1;
+});
+
+document.querySelector("#back").addEventListener("click",async function(){
+  let index = 0;
+if(backCounter>=0){
+  index = backCounter%(availableAsteroids.length);
+  backCounter = index;
+}
+else{
+  index = backCounter+availableAsteroids.length;
+  backCounter = index;
+}
+let asteroid = availableAsteroids[index];
+if(asteroid=="Bennu"){setValues("101955 Bennu","21.06 yr","1.3559 AU","0.89689 AU","1.1264 AU","0.20375","1.1955 yr","4.296057±0.000002 h","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Geographos"){setValues("1620 Geographos","65.37 yr","1.6629 AU","0.8276 AU","1.2453 AU","0.3354","1.39 yr","5.2220±0.0003 h","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Golevka"){setValues("6489 Golevka","24.55 yr","4.021663 AU","0.992813 AU","2.507238 AU","0.604021","3.97 yr","6.026 h","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Vesta"){setValues("4 Vesta","214 yr","2.57138 AU","2.15221 AU","2.36179 AU","0.08874","3.63 yr","5.342 h","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Mithra"){setValues("4486 Mithra","29.04 yr","3.6582 AU","0.7417 AU","2.2000 AU","0.6629","3.26 yr","67.5±6 h","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Kleopatra"){setValues("216 Kleopatra","137.60 yr","3.4951 AU","2.0931 AU","2.7941 AU","0.2509","4.67 yr","5.385280±0.000001 h","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Itokawa"){setValues("25143 Itokawa","20.38 y","1.6951 AU","0.9532 AU","1.3241 AU","0.2801","1.52 yr","12.132 h","10,050 Kg","Carbonaceous");}
+else{setValues("1996 HW1","NIL","2.964 AU","1.1260045 AU","2.0450908 AU","0.45","2.92 yr","NIL","10,050 Kg","NIL");}
+
+document.getElementById("counter").innerHTML=index+1;
+await renderAsteroid(asteroid);
+backCounter--; forthCounter = backCounter+1;
+});
+if(date.getHours()>=12){
+document.querySelector("#heading3").innerHTML=date.getHours()+":"+date.getMinutes()+" PM IST";
+}
+else{
+  document.querySelector("#heading3").innerHTML=date.getHours()+":"+date.getMinutes()+" AM IST";
+}
+document.querySelector("#heading4").innerHTML=date.getDate()+" "+months[date.getMonth()]+" "+date.getFullYear();
+}
+main();
+
+
+    </script>
+
+<!--############################################################################################################################-->
+</html>
