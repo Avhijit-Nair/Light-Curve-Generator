@@ -886,14 +886,14 @@ else{
   backCounter = index;
 }
 let asteroid = availableAsteroids[index];
-if(asteroid=="Bennu"){setValues("101955 Bennu","21.06 yr","1.3559 AU","0.89689 AU","1.1264 AU","0.20375","1.1955 yr","4.296057±0.000002 h","10,050 Kg","Carbonaceous");}
-else if(asteroid=="Geographos"){setValues("1620 Geographos","65.37 yr","1.6629 AU","0.8276 AU","1.2453 AU","0.3354","1.39 yr","5.2220±0.0003 h","10,050 Kg","Carbonaceous");}
-else if(asteroid=="Golevka"){setValues("6489 Golevka","24.55 yr","4.021663 AU","0.992813 AU","2.507238 AU","0.604021","3.97 yr","6.026 h","10,050 Kg","Carbonaceous");}
-else if(asteroid=="Vesta"){setValues("4 Vesta","214 yr","2.57138 AU","2.15221 AU","2.36179 AU","0.08874","3.63 yr","5.342 h","10,050 Kg","Carbonaceous");}
-else if(asteroid=="Mithra"){setValues("4486 Mithra","29.04 yr","3.6582 AU","0.7417 AU","2.2000 AU","0.6629","3.26 yr","67.5±6 h","10,050 Kg","Carbonaceous");}
-else if(asteroid=="Kleopatra"){setValues("216 Kleopatra","137.60 yr","3.4951 AU","2.0931 AU","2.7941 AU","0.2509","4.67 yr","5.385280±0.000001 h","10,050 Kg","Carbonaceous");}
-else if(asteroid=="Itokawa"){setValues("25143 Itokawa","20.38 y","1.6951 AU","0.9532 AU","1.3241 AU","0.2801","1.52 yr","12.132 h","10,050 Kg","Carbonaceous");}
-else{setValues("1996 HW1","NIL","2.964 AU","1.1260045 AU","2.0450908 AU","0.45","2.92 yr","NIL","10,050 Kg","NIL");}
+if(asteroid=="Bennu"){setValues("101955 Bennu","21.06 yr","1.3559 AU","0.89689 AU","1.1264 AU","0.20375","1.1955 yr","4.296057±0.000002 h","NEO,Apollo,PHA","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Geographos"){setValues("1620 Geographos","65.37 yr","1.6629 AU","0.8276 AU","1.2453 AU","0.3354","1.39 yr","5.2220±0.0003 h","NEO,Apollo,PHA","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Golevka"){setValues("6489 Golevka","24.55 yr","4.021663 AU","0.992813 AU","2.507238 AU","0.604021","3.97 yr","6.026 h","Alinda, Apollo, PHA, Mars Crosser","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Vesta"){setValues("4 Vesta","214 yr","2.57138 AU","2.15221 AU","2.36179 AU","0.08874","3.63 yr","5.342 h","Main-belt","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Mithra"){setValues("4486 Mithra","29.04 yr","3.6582 AU","0.7417 AU","2.2000 AU","0.6629","3.26 yr","67.5±6 h","NEO, Apollo, PHA","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Kleopatra"){setValues("216 Kleopatra","137.60 yr","3.4951 AU","2.0931 AU","2.7941 AU","0.2509","4.67 yr","5.385280±0.000001 h","Main-belt","10,050 Kg","Carbonaceous");}
+else if(asteroid=="Itokawa"){setValues("25143 Itokawa","20.38 y","1.6951 AU","0.9532 AU","1.3241 AU","0.2801","1.52 yr","12.132 h","NEO, Apollo, PHA","10,050 Kg","Carbonaceous");}
+else{setValues("1996 HW1","NIL","2.964 AU","1.1260045 AU","2.0450908 AU","0.45","2.92 yr","NIL","NIL","10,050 Kg","NIL");}
 
 document.getElementById("counter").innerHTML=index+1;
 await renderAsteroid(asteroid);
