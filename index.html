@@ -3,6 +3,7 @@
   <head>
     <script src = "png.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="icon" href="Icons/app-logo.svg" sizes="20x20">
   </head>
     <style>
        @font-face { font-family: Arimo; src: url('Arimo-VariableFont_wght.ttf'); } 
@@ -13,20 +14,30 @@
   padding-right: 20px;
   padding-top:10px;
   height: 100%;
-  background: rgb(0,0,0);
+  background:url("background.png");
   color: white;
   font-family: Arimo;
   
+}
+::-webkit-scrollbar{
+  width: 7px;
+  background: grey;
+}
+::-webkit-scrollbar-thumb{
+  background: white;
 }
 #c {
   width: 250px;
   height: 170px;
   display: block;
   margin:auto;
+  position: relative;
+  top:14px;
+  left: -1.5vw;
 }
 #generate{
   position: relative;
-  left:15vw;
+  left:14vw;
   border: none;
   padding: 15px 32px;
   padding-bottom: 20px;
@@ -43,8 +54,13 @@
   top:5vh;
 }
 #generate:hover{
+  background: #0078BC;
+  cursor: pointer;
+}
+#generate:disabled{
   background: rgba(255, 255, 255, 0.2);
 }
+
 h2{
   text-align: center;
 }
@@ -68,7 +84,6 @@ h2{
 }
 .asteroidContainer{
   grid-column: 2/span 2;
-  
 }
 .subContainer{
   display: flex;
@@ -105,7 +120,7 @@ h2{
   font-size: 16px;
   line-height: 18px;
   position: relative;
-  left: 19.5vw;
+  left: 17.5vw;
 }
 .sub1{
   grid-column: 1/span 2;
@@ -178,7 +193,6 @@ h2{
   margin-bottom: 10px;
 }
 #btn{
-  margin-top: 5vh;
   border:none;
   display: inline-block;
   background: transparent;
@@ -194,7 +208,6 @@ h2{
 }
 .rr{
   background: transparent;
-  color: white;
   border:none;
   width:40px;
   text-align: center;
@@ -209,6 +222,7 @@ h2{
 .rr:hover{
   color: white;
 }
+
 img{
   display: inline-block;
   width:20px;
@@ -239,12 +253,11 @@ img{
   top: 0.9vh;
   right: 0.2vw;
 }
-#nasaLogo{
-  height: 8vh;
-  width: 5vw;
+#logo{
+  height: 12vh;
+  width: 12vw;
   grid-row: 1/span2;
   position: relative;
-  top: 1.5vh;
 }
 .subHeading{
   width: 16vw;
@@ -290,11 +303,15 @@ img{
   font-size: 14px;
   line-height: 16px;
   color: #9EA3AF;
+  position: relative;
+  top:8vh;
 }
 .rotationContainer{
-  width: 5vw;
+  position: relative;
+  left: 12vw;
+  width: 20vw;
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto auto auto;
 }
 .rot{
   border: none;
@@ -324,7 +341,7 @@ img{
   transition-duration: 0.4s;
 }
 #fileSelect:hover{
-  background-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .info{
@@ -333,14 +350,45 @@ img{
   font-size: 20px;
   line-height: 23px;
 }
+#axes{
+  background:black;
+  border: none;
+  color: #9EA3AF;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 14px;
+  display: inline-block;
+  transition-duration: 0.4s;
+}
+#axes:hover{
+  color: white;
+}
+#back:hover,#forth:hover{
+  transition-duration: 0.4s;
+  background-color: white;
+}
+#copyrightInfo{
+  color: #9EA3AF;
+  font-size: 10px;
+  line-height: 14px;
+  display: inline-block;
+  position: fixed;
+  top:95vh;
+}
+#chartLabel{
+  position: relative;
+  top:12vh;
+  font-size: 12px;
+  line-height: 13.8px;
+  display: none;
+}
  </style>
     <body>
       <div class="masterContainer">
       <div class="headingContainer">
         <div class="subHeading">
-          <img src="nasaLogo.png" id="nasaLogo">
-     <span style id="heading1">LIGHT-CURVE GENERATOR</span><br>
-     <span style id="heading2">ASTEROID APPS</span>
+     <img src = "Icons/app-logo.svg" id="logo">
         </div>
         <div class = "subHeading2">
      <span id = "heading3">14:30 PM EST</span><br>
@@ -415,22 +463,28 @@ img{
        <button id="fileSelect"><img src="Icons/plus.svg">Upload Your Model</button>
      </div>
      <div class="asteroidContainer">
-       <h4 id="shapeType">Rotation Axis</h4>
+       <h4 id="shapeType">Rotation Controls</h4>
        <div class = "rotationContainer">
-         <button class="rot">X</button>
-         <button class="rot">Y</button>
-         <button class="rot">Z</button>
-       </div>
-        <canvas id="c"></canvas><br>
+        <button id="btn"><img src="Icons/triangle.svg" style="width:10px;height: 10px;position: relative;top:-0.1vh;">Play</button>
+        <div class="resetSub">
+        <img src="Icons/rotate2.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:0.8vw;"><input type="reset" class="rr" id="rr1"></div>
+        <div style="position: relative;left: 1vw;"><span style="height: 2px;width: 2px;">x</span><input type="number" max="100" min="1" step="0.1" value='1.0' class="rr" id="rr2"><img src="Icons/dropdown.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:-0.7vw;"></div>
+        <select id="axes" style="position: relative;left: 0.6vw;">
+          <option value="x">Rotate around X</option>
+          <option value="y">Rotate around Y</option>
+          <option value="z">Rotate around Z</option>
+        </select>
+       </div><br>
+        <canvas id="c"></canvas><br><br>
         <div class="descContainer">
           <img src = "Icons/search2.svg">
         <span class="desc" id="l1">You can zoom the model with mouse</span>
         </div><br>
         <div class="descContainer">
-        <img src="Icons/rotate.svg" >        
-        <span class="desc">Rotate the asteroid to generate its light curve</span>
+        <img src="Icons/triangle.svg" >        
+        <span class="desc">Press Play to generate light curve data</span>
         </div><br><br>
-        <button id="generate"><img src="Icons/generate light curve.svg" id="glg">Generate Light Curve</button>
+        <button id="generate" disabled><img src="Icons/generate light curve.svg" id="glg">Generate Light Curve</button>
         <div class="chart-container" style="height: auto;">
           <canvas id="lg"></canvas>
       </div>
@@ -475,9 +529,7 @@ img{
           </div>
           <img src="Icons/plus.svg" class="plus"><input type="range" min="-10" max="10" value="3" steps = 0.01 class="slider" id="range4"><img src="Icons/minus.svg" class="minus">
         </div>
-        <button id="btn"><img src="Icons/triangle.svg" style="width:10px;height: 10px;position: relative;top:-0.1vh;">Play</button>
-        <span style="position: relative;left: 0.5vw;">x</span><input type="number" max="100" min="1" step="0.1" value='1.0' class="rr" style="position: relative;left: 0.5vw;">
-        <img src="Icons/rotate2.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:0.5vw;"><input type="reset" class="rr"><br><br>
+        
         <div class="additionalContainer">
           <div>
             <span>ROTATION PERIOD</span><br>
@@ -495,6 +547,13 @@ img{
             <span>AMP</span><br>
             <span style="color:white;" class="info">-</span>
           </div>
+        </div>
+        <div id="chartLabel">
+          <img src="Icons/ellipse.svg" style="width: 16px;height: 16px;">
+          <span>Calar Alto;V Band</span>
+        </div>
+        <div id="copyrightInfo">
+          <span>&copy;</span><span>DESIGNED BY AVHIJIT NAIR, ALLESIO FERRACUTI AND LEONARDO GOGIALI</span>
         </div>
         </div>
         
@@ -544,6 +603,7 @@ let getBrightness = () =>{
        labelFontColor:"rgb(255, 255, 255)"
       },
   data: {
+    
     datasets: [{
       pointRadius: 4,
       pointBackgroundColor: "#00A3FF",
@@ -570,6 +630,7 @@ let getBrightness = () =>{
   
 });
 window.lg = chart;
+
  }
 
 document.querySelector("#generate").addEventListener("click",function(){
@@ -581,9 +642,9 @@ document.querySelector("#generate").addEventListener("click",function(){
   const info = document.getElementsByClassName("info");
   plotLG();
 
- //document.querySelector("label1").style.display="inline-block";
+ document.getElementById("chartLabel").style.display = "inline-block";
 
-  info[0].innerHTML = document.getElementsByClassName("rr")[0].value+" H";
+  info[0].innerHTML = document.getElementById("rr2").value+" H";
   info[1].innerHTML = "10.2392";
   info[2].innerHTML = date.getDate()+"/"+date.getMonth()+"/"+date.getUTCFullYear();
   info[3].innerHTML = "0:21";
@@ -597,22 +658,40 @@ document.querySelector("#generate").addEventListener("click",function(){
  import * as THREE from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/build/three.module.js';
 import {OrbitControls} from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/examples/jsm/controls/OrbitControls.js';
 import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/threejs/r132/examples/jsm/loaders/GLTFLoader.js';
-import {GUI} from 'https://threejsfundamentals.org/threejs/../3rdparty/dat.gui.module.js';
 
 function main() {
   const renderer = new THREE.WebGLRenderer({canvas,alpha: true,preserveDrawingBuffer: true});
 
   let tau = 1,fps=10,step=0,FA = Math.PI*2,angelStep = 0,t=0,aor='x';
 
-  document.getElementsByClassName("rr")[0].oninput = function(){
+  document.getElementById("rr2").oninput = function(){
     tau=this.value;
       step = 1/(tau*fps);
       angelStep = FA*step;
   }
-  document.getElementsByClassName("rot")[0].addEventListener("click",function(){aor='x'});
-  document.getElementsByClassName("rot")[1].addEventListener("click",function(){aor='y'});
-  document.getElementsByClassName("rot")[2].addEventListener("click",function(){aor='z'});
+  document.getElementById("rr2").onclick = function(){
+    this.style.value = "#00A3FF";
+    document.getElementById("btn").style.color = "#9EA3AF";
+    document.getElementById("rr2").style.color = "#9EA3AF";
+    document.getElementById("axes").style.color = "#9EA3AF";
+  }
+  document.getElementById("axes").oninput = function(){
+    aor = this.value;
+  }
 
+  document.getElementById("rr1").onclick = function(){
+    this.style.color = "#00A3FF";
+    document.getElementById("btn").style.color = "#9EA3AF";
+    document.getElementById("rr2").style.color = "#9EA3AF";
+    document.getElementById("axes").style.color = "#9EA3AF";
+  }
+
+ document.getElementById("axes").onclick = function(){
+    this.style.color = "#00A3FF";
+    document.getElementById("btn").style.color = "#9EA3AF";
+    document.getElementById("rr1").style.color = "#9EA3AF";
+    document.getElementById("rr2").style.color = "#9EA3AF";
+  }
   let root,forthCounter = 0, backCounter=0;
   const availableAsteroids = ['Bennu','Vesta','Golevka','Geographos','hw1','Kleopatra','Mithra','Itokawa'];
   const months = ["Jan", "Feb", "March", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
@@ -849,7 +928,14 @@ document.getElementsByClassName("item4")[8].innerHTML = mass;
 document.getElementsByClassName("item4")[9].innerHTML = c;
 document.getElementsByClassName("item4")[10].innerHTML = c;
 }
-document.querySelector("#btn").addEventListener("click",revolutionHelper);
+document.querySelector("#btn").addEventListener("click",function(){
+  revolutionHelper();
+  document.getElementById("generate").disabled = false;
+  this.style.color = "#00A3FF";
+  document.getElementById("rr1").style.color = "#9EA3AF";
+  document.getElementById("rr2").style.color = "#9EA3AF";
+  document.getElementById("axes").style.color = "#9EA3AF";
+});
 document.querySelector("#forth").addEventListener("click",async function(){
   let index = 0;
 if(forthCounter>=0){
