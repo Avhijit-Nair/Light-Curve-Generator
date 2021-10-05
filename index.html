@@ -468,7 +468,7 @@ img{
         <button id="btn"><img src="Icons/triangle.svg" style="width:10px;height: 10px;position: relative;top:-0.1vh;">Play</button>
         <div class="resetSub">
         <img src="Icons/rotate2.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:0.8vw;"><input type="reset" class="rr" id="rr1"></div>
-        <div style="position: relative;left: 1vw;"><span style="height: 2px;width: 2px;">x</span><input type="number" max="100" min="1" step="0.1" value='1.0' class="rr" id="rr2"><img src="Icons/dropdown.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:-0.7vw;"></div>
+        <div style="position: relative;left: 1vw;"><span style="height: 2px;width: 2px;">x</span><input type="number" max="100" min="1" step="0.1" value='40.0' class="rr" id="rr2"><img src="Icons/dropdown.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:-0.7vw;"></div>
         <select id="axes" style="position: relative;left: 0.6vw;">
           <option value="x">Rotate around X</option>
           <option value="y">Rotate around Y</option>
@@ -662,7 +662,7 @@ import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/thre
 function main() {
   const renderer = new THREE.WebGLRenderer({canvas,alpha: true,preserveDrawingBuffer: true});
 
-  let tau = 1,fps=10,step=0,FA = Math.PI*2,angelStep = 0,t=0,aor='x';
+  let tau = 1,fps=10,step=1/(fps*tau),FA = Math.PI*2,angelStep = FA*step,t=0,aor='x';
 
   document.getElementById("rr2").oninput = function(){
     tau=this.value;
