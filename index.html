@@ -663,7 +663,7 @@ import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/thre
 function main() {
   const renderer = new THREE.WebGLRenderer({canvas,alpha: true,preserveDrawingBuffer: true});
 
-  let tau = 1,fps=10,step=1/(fps*tau),FA = Math.PI*2,angelStep = FA*step,t=0,aor='x';
+  let tau = 40,fps=10,step=1/(fps*tau),FA = Math.PI*2,angelStep = FA*step,t=0,aor='x';
 
   document.getElementById("rr2").oninput = function(){
     tau=this.value;
