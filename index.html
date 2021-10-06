@@ -17,7 +17,6 @@
   background:url("background.png");
   color: white;
   font-family: Arimo;
-  
 }
 ::-webkit-scrollbar{
   width: 7px;
@@ -52,6 +51,7 @@
   transition-duration: 0.4s;
   text-transform: uppercase;
   top:5vh;
+  filter: blur(8px);
 }
 #generate:hover{
   background: #0078BC;
@@ -67,6 +67,7 @@ h2{
 .masterContainer{
   display: grid;
   grid-template-columns: 0.3fr 0.3fr 0.2fr 0.2fr;
+  z-index: 1;
 }
 .headingContainer{
   grid-column: 1/span 4;
@@ -74,10 +75,12 @@ h2{
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
+  filter: blur(15px);
 }
 .infoContainer{
   display: grid;
   grid-template-columns: auto auto;
+  filter: blur(15px);
 }
 .item2{
   color: #9EA3AF;
@@ -113,6 +116,7 @@ h2{
   position: relative;
   left: 14vw;
   top:3vh;
+  filter: blur(15px);
 }
 #shapeType{
   font-style: normal;
@@ -121,6 +125,7 @@ h2{
   line-height: 18px;
   position: relative;
   left: 17.5vw;
+  filter: blur(15px);
 }
 .sub1{
   grid-column: 1/span 2;
@@ -296,6 +301,7 @@ img{
   display: grid;
   grid-template-columns: auto auto;
   grid-row-gap: 4vh;
+  filter: blur(8px);
 }
 .additionalContainer span{
   font-style: normal;
@@ -312,6 +318,7 @@ img{
   width: 20vw;
   display: grid;
   grid-template-columns: auto auto auto auto;
+  filter: blur(15px);
 }
 .rot{
   border: none;
@@ -383,8 +390,70 @@ img{
   line-height: 13.8px;
   display: none;
 }
+.onboarding{
+  position:fixed;
+  top:10px;
+  left:10px;
+  width:30vw;
+  padding:10px;
+  height: 90vh;
+  padding-left: 5vw;
+  z-index: 1000;
+}
+.onboarding .msg1{
+  position: relative;
+  text-align: left;
+  top:10vh;
+}
+.msg3{
+  position: relative;
+  text-align: left;
+  top:15vh;
+}
+.msg2{
+  position: relative;
+  text-align: left;
+  top:13vh;
+}
+.onboarding p{
+  position: relative;
+  text-align: left;
+  top:12vh;
+  color: #D1D1D1;
+}
+.onboarding button{
+  position: relative;
+  top:15vh;
+  width: 8vw;
+  padding:15px;
+  border: none;
+  background: #00A3FF;
+  color: white;
+}
+.onboarding button:disabled{
+  color:#505152;
+  background-color: #303132;
+}
+.onboarding img{
+  position: relative;
+  top:10vh;
+  left:-0.2vw;
+  width: 34px;
+  height: 35px;
+}
+
  </style>
     <body>
+      <div class="onboarding">
+        <img src="Icons/Vector.svg"><br>
+        <h2 class="msg1">Welcome <br>to NASA app</h2>
+        <div class="msg3"><span>STEP </span><span id="stepCounter">1 </span><span>OF </span><span>3</span></div>
+        <h2 class="msg2">Adjust Intensity and <br>orientation of Light Source</h2>
+        <p>
+          Change Asteroid's<br> brightness from the lighting<br> controls on the right panel<br> to proceed for next.
+        </p>
+        <button disabled id="next">NEXT ==></button>
+      </div>
       <div class="masterContainer">
       <div class="headingContainer">
         <div class="subHeading">
@@ -468,7 +537,7 @@ img{
         <button id="btn"><img src="Icons/triangle.svg" style="width:10px;height: 10px;position: relative;top:-0.1vh;">Play</button>
         <div class="resetSub">
         <img src="Icons/rotate2.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:0.8vw;"><input type="reset" class="rr" id="rr1"></div>
-        <div style="position: relative;left: 1vw;"><span style="height: 2px;width: 2px;">x</span><input type="number" max="100" min="1" step="0.1" value='1.0' class="rr" id="rr2"><img src="Icons/dropdown.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:-0.7vw;"></div>
+        <div style="position: relative;left: 1vw;"><span style="height: 2px;width: 2px;">x</span><input type="number" max="100" min="1" step="0.1" value='40.0' class="rr" id="rr2"><img src="Icons/dropdown.svg" style="width:11px;height: 11px;position: relative;top:-0.03vh;left:-0.7vw;"></div>
         <select id="axes" style="position: relative;left: 0.6vw;">
           <option value="x">Rotate around X</option>
           <option value="y">Rotate around Y</option>
@@ -561,7 +630,55 @@ img{
     </body>
 
  <!--#############################################################################################################################-->   
+<script>
+  let nextCounter = 1;
+  let fun1 = () =>{
+    document.getElementsByClassName("controlContainer")[0].style.filter = "blur(15px)";
+  document.getElementById("shapeType").style.filter = "blur(0px)";
+  document.getElementsByClassName("rotationContainer")[0].style.filter = "blur(0px)";
+  nextCounter++;
+  document.getElementById("next").disabled = true;
+  document.getElementById("stepCounter").innerHTML = nextCounter+" ";
+  document.getElementsByClassName("msg2")[0].innerHTML = "Press PLAY to<br>rotate the asteroid";
+  document.getElementsByTagName("p")[0].innerHTML = "Use the rotation controls to<br>animate the asteroid so its<br>brightness variation can be generated.";
+  }
 
+  let fun2 = () =>{
+    document.getElementById("next").disabled = true;
+  document.getElementById("shapeType").style.filter = "blur(15px)";
+  document.getElementsByClassName("rotationContainer")[0].style.filter = "blur(15px)";
+  document.getElementById("generate").style.filter = "blur(0px)";
+  nextCounter++;
+  document.getElementById("stepCounter").innerHTML = nextCounter+" ";
+  document.getElementsByClassName("msg2")[0].innerHTML = "Press GENERATE LIGHT <br>CURVE button";
+  document.getElementsByTagName("p")[0].innerHTML = "This button will generate the Light <br>Curve of the selected asteroid or a<br> custom 3d model uploaded by the <br>user.";
+  }
+
+  let fun3 = () =>{
+    //document.body.removeChild(document.getElementsByClassName("onboarding")[0]);
+    document.getElementsByClassName("onboarding")[0].style.display = "none";
+    document.getElementById("next").disabled = true;
+    document.getElementById("shapeType").style.filter = "blur(0px)";
+    document.getElementsByClassName("rotationContainer")[0].style.filter = "blur(0px)";
+    document.getElementsByClassName("controlContainer")[0].style.filter = "blur(0px)";
+    document.getElementsByClassName("additionalContainer")[0].style.filter = "blur(0px)";
+    document.getElementsByClassName("descContainer")[0].style.filter = "blur(0px)";
+    document.getElementsByClassName("infoContainer")[0].style.filter = "blur(0px)";
+    document.getElementsByClassName("headingContainer")[0].style.filter = "blur(0px)";
+    document.getElementById("shapeType").style.filter = "blur(0px)";
+  }
+
+document.getElementById("range").onchange = () =>{
+  document.getElementById("next").disabled = false;
+  megaFun(1);
+}
+let megaFun = (c) =>{
+if(c==1)document.getElementById("next").addEventListener("click",fun1,true);
+if(c==2) document.getElementById("next").addEventListener("click",fun2,true);
+if(c==3)document.getElementById("next").addEventListener("click",fun3,true);
+}
+
+</script>
 <script>
 const canvas = document.querySelector('#c');
 let chart;
@@ -630,7 +747,8 @@ let getBrightness = () =>{
   
 });
 window.lg = chart;
-
+lightCurveValues = []
+timeValues = []
  }
 
 document.querySelector("#generate").addEventListener("click",function(){
@@ -649,6 +767,10 @@ document.querySelector("#generate").addEventListener("click",function(){
   info[2].innerHTML = date.getDate()+"/"+date.getMonth()+"/"+date.getUTCFullYear();
   info[3].innerHTML = "0:21";
 
+  document.getElementById("next").disabled = false;
+  document.getElementById("next").innerHTML = "FINISH";
+  document.getElementById("next").removeEventListener("click",fun2,true);
+  megaFun(3);
 });
 </script>
 
@@ -662,7 +784,7 @@ import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/thre
 function main() {
   const renderer = new THREE.WebGLRenderer({canvas,alpha: true,preserveDrawingBuffer: true});
 
-  let tau = 1,fps=10,step=0,FA = Math.PI*2,angelStep = 0,t=0,aor='x';
+  let tau = 40,fps=10,step=1/(tau*fps),FA = Math.PI*2,angelStep = FA*step,t=0,aor='x';
 
   document.getElementById("rr2").oninput = function(){
     tau=this.value;
@@ -928,7 +1050,11 @@ document.getElementsByClassName("item4")[8].innerHTML = mass;
 document.getElementsByClassName("item4")[9].innerHTML = c;
 document.getElementsByClassName("item4")[10].innerHTML = c;
 }
+
 document.querySelector("#btn").addEventListener("click",function(){
+  document.getElementById("next").disabled= false;
+  document.getElementById("next").removeEventListener("click",fun1,true);
+  megaFun(2);
   revolutionHelper();
   document.getElementById("generate").disabled = false;
   this.style.color = "#00A3FF";
@@ -936,6 +1062,7 @@ document.querySelector("#btn").addEventListener("click",function(){
   document.getElementById("rr2").style.color = "#9EA3AF";
   document.getElementById("axes").style.color = "#9EA3AF";
 });
+
 document.querySelector("#forth").addEventListener("click",async function(){
   let index = 0;
 if(forthCounter>=0){
