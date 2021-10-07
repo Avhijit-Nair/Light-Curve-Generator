@@ -672,6 +672,18 @@ document.getElementById("range").onchange = () =>{
   document.getElementById("next").disabled = false;
   megaFun(1);
 }
+document.getElementById("range2").onchange = () =>{
+  document.getElementById("next").disabled = false;
+  megaFun(1);
+}
+document.getElementById("range3").onchange = () =>{
+  document.getElementById("next").disabled = false;
+  megaFun(1);
+}
+document.getElementById("range4").onchange = () =>{
+  document.getElementById("next").disabled = false;
+  megaFun(1);
+}
 let megaFun = (c) =>{
 if(c==1)document.getElementById("next").addEventListener("click",fun1,true);
 if(c==2) document.getElementById("next").addEventListener("click",fun2,true);
@@ -784,7 +796,7 @@ import {GLTFLoader} from 'https://threejsfundamentals.org/threejs/resources/thre
 function main() {
   const renderer = new THREE.WebGLRenderer({canvas,alpha: true,preserveDrawingBuffer: true});
 
-  let tau = 40,fps=10,step=1/(tau*fps),FA = Math.PI*2,angelStep = FA*step,t=0,aor='x';
+  let tau = 40,fps=5,step=1/(tau*fps),FA = Math.PI*2,angelStep = FA*step,t=0,aor='x';
   
   document.getElementById("rr2").oninput = function(){
     tau=this.value;
