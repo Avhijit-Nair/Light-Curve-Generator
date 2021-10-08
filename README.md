@@ -4,3 +4,6 @@ This is a Web App developed for the challenge `When Light Curves Throws Us Curve
 
 # Link to app
 https://avhijit-codeboy.github.io/Light-Curve-Generator/
+
+# Link to project presentation
+https://github.com/Avhijit-codeboy/Light-Curve-Generator/blob/main/Project_demo_international_boyz.pdf
