@@ -7,3 +7,6 @@ https://avhijit-codeboy.github.io/Light-Curve-Generator/
 
 # Link to project presentation
 https://github.com/Avhijit-codeboy/Light-Curve-Generator/blob/main/Project_demo_international_boyz.pdf
+
+# Link to project video demo
+https://drive.google.com/file/d/1ZWPj6d5ZyOVTggjSIU8Rwfn17UWDZfB-/view?usp=sharing
